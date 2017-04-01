@@ -23,7 +23,7 @@
 # NB: we request the output file using the "out" parameter, not the filename we requested
 
 # Here is the copy example using jq(http://stedolan.github.io/jq/) to help a bit
-# 
+#
 # id=`curl --silent -X POST --form in=#README.md --form out=small_file.txt localhost:9901/rest/service/copy | jq -r .uuid`
 # wget --content-disposition localhost:9901/rest/job/$id/file/output
 
@@ -45,11 +45,5 @@ warnLevel: 5
 
 
 services:
-  - endPoint: kmeansseg
-    commandLine: ["./_kmeansseg.py", "-n", "#clusternumber","-a","<imageA","-b", "<imageB","-o", ">output"]
-
-  - endPoint: featsel
-    commandLine: ["./_featureSelection.py", "-i","<datset","-o", ">output"]
-
-  - endPoint: classeval
-    commandLine: ["./_classifierevaluation.py", "-i","<datset","-o", ">output"]
+  - endPoint: noduleclassifier
+    commandLine: [python "_model_application.py","-i","<dataset","-o", ">output"]

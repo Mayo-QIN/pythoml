@@ -103,7 +103,7 @@ def machinelearningpipeline(dataset,output='output.zip'):
 	else:
 		plt.title('The classification for this case is benign')
 	f.savefig(directory+'/output.pdf')
-	types = ('*.pdf', '*.csv','*.xlsx') # the tuple of file types
+	types = ('*.pdf') # the tuple of file types
 	files_grabbed = []
 	for files in types:
 		files_grabbed.extend(glob.glob(files))

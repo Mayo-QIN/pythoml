@@ -89,6 +89,7 @@ COPY _kmeansseg.py _kmeansseg.py
 COPY _classifierevaluation.py _classifierevaluation.py
 COPY _featureSelection.py _featureSelection.py
 COPY _analyticscalc.py _analyticscalc.py
+COPY _model_application.py _model_application.py
 
 # What do we run on startup?
 CMD ["/bin/grunt", "/grunt.d/unsuper.yml"]

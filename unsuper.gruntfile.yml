@@ -46,4 +46,4 @@ warnLevel: 5
 
 services:
   - endPoint: noduleclassifier
-    commandLine: [python "_model_application.py","-i","<dataset","-o", ">output"]
+    commandLine: [python "/_model_application.py","-i","<dataset","-o", ">output"]

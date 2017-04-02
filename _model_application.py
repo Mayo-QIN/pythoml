@@ -54,7 +54,8 @@ def machinelearningpipeline(dataset,output='output.zip'):
         os.makedirs(directory)
     print ('I am saving temporary things in: %s'%(directory))
     # The input is a zip file: Unzip it in a temp folder and load the csv file as pandas
-    zip_ref = zipfile.ZipFile('output.zip', 'r')
+    ziptoproces=glob.glob("*.zip")
+    zip_ref = zipfile.ZipFile(ziptoproces[0], 'r')
     zip_ref.extractall(directory)
     zip_ref.close()
     # Load CSV

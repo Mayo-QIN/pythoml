@@ -20,9 +20,10 @@ from sklearn import svm
 np.random.seed(42)
 
 
-def machinelearningpipeline(dataset,output='output.zip'):
+def machinelearningpipeline(dataset,output='output.pdf'):
 
 	subdir = str(uuid.uuid4())
+
 	# Create a folder for all the temporary stuff and remove at the end
 	directory='/tmp/'+subdir+'/'
 	if not os.path.exists(directory):
@@ -77,16 +78,9 @@ def machinelearningpipeline(dataset,output='output.zip'):
 		plt.title('The classification for this case is benign')
 	else:
 		plt.title('The classification for this case is benign')
-	f.savefig(directory+'/output.pdf')
-	types = ('*.pdf') # the tuple of file types
-	files_grabbed = []
-	for files in types:
-		files_grabbed.extend(glob.glob(files))
-	for file in files_grabbed:
-		if os.path.isfile(file):
-			shutil.copy2(file, directory)
-	shutil.make_archive(output[:-4], 'zip', directory)
-	return 0
+	f.savefig('output.pdf')
+
+	return output
 
 
 def main(argv):

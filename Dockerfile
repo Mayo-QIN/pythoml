@@ -31,9 +31,9 @@ RUN yum install -y libtiff-devel tcp_wrappers-devel
 RUN yum install -y telnet
 RUN yum -y install python-pip
 RUN pip install --upgrade pip
-RUN mkdir ~/src && cd ~/src && \
+RUN mkdir ~/srcb && cd ~/srcb && \
   git clone https://github.com/xianyi/OpenBLAS && \
-  cd ~/src/OpenBLAS && \
+  cd ~/srcb/OpenBLAS && \
   make FC=gfortran && \
   make PREFIX=/opt/OpenBLAS install
 # now update the library system:
@@ -43,7 +43,7 @@ ENV LD_LIBRARY_PATH=/opt/OpenBLAS/lib:$LD_LIBRARY_PATH
 RUN yum -y install freetype freetype-devel libpng-devel
 RUN pip install matplotlib
 # now install numpy source
-RUN pwd 
+RUN pwd
 RUN ls
 RUN cd ~/src && \
   git clone  -b maintenance/1.11.x https://github.com/numpy/numpy && \
@@ -67,7 +67,7 @@ RUN pip install cython --upgrade
 RUN pip install scipy
 RUN pip install scikit-learn
 RUN pip install scikit-image
-# RUN pip install --trusted-host www.simpleitk.org -f http://www.simpleitk.org/SimpleITK/resources/software.html SimpleITK 
+# RUN pip install --trusted-host www.simpleitk.org -f http://www.simpleitk.org/SimpleITK/resources/software.html SimpleITK
 RUN pip install pandas
 RUN pip install argparse
 RUN pip install pydicom

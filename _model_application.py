@@ -9,32 +9,8 @@ mpl.use('pdf')
 from time import time
 import numpy as np
 import pandas as pd
-from sklearn.cluster import KMeans
 import argparse
-import nibabel as nib
-from sklearn.preprocessing import StandardScaler
-import pandas as pd
-import seaborn as sns
-from sklearn.linear_model import RandomizedLasso
 import matplotlib.pyplot as plt
-from sklearn.cross_validation import train_test_split
-from sklearn.naive_bayes import GaussianNB
-from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.svm import LinearSVC
-from sklearn.calibration import calibration_curve
-from sklearn.cross_validation import StratifiedShuffleSplit
-from sklearn.grid_search import GridSearchCV
-from  openpyxl import Workbook
-from sklearn.svm import SVC
-from sklearn.preprocessing import StandardScaler
-from _analyticscalc import analyticscalc
-from sklearn.learning_curve import learning_curve
-from sklearn.cross_validation import KFold
-from sklearn import cross_validation
-from sklearn.learning_curve import learning_curve
-from sklearn.metrics import classification_report
-from sklearn.metrics import confusion_matrix
 import glob
 import shutil
 import os
@@ -47,7 +23,6 @@ np.random.seed(42)
 def machinelearningpipeline(dataset,output='output.zip'):
 
 	subdir = str(uuid.uuid4())
-
 	# Create a folder for all the temporary stuff and remove at the end
 	directory='/tmp/'+subdir+'/'
 	if not os.path.exists(directory):

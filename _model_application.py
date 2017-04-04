@@ -65,19 +65,30 @@ def machinelearningpipeline(dataset,output='output.pdf'):
 	Z = Z.reshape(xx.shape)
 	plt.contourf(xx, yy, Z, cmap=plt.cm.coolwarm, alpha=0.8)
 	# Plot also the training points
-	plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.coolwarm)
-	plt.xlabel('Volume')
-	plt.ylabel('sphericity.value')
-	plt.plot(volume,sphericity,'r*', markersize=20)
+	plt.contourf(xx, yy, Z, cmap=plt.cm.bwr_r, alpha=0.8)
+	# Plot also the training points
+	classes = ['Benign','Malignant']
+	colours = ['b','r']
+	for (i,cla) in enumerate(set(classes)):
+		print i
+		Xz=X.copy()
+		Xz=np.delete(Xz,np.nonzero(y==i),axis=0)	
+		plt.scatter(Xz[:, 0], Xz[:, 1],c=colours[i],label=classes[i])
+	plt.xlabel('Volume mm^3')
+	plt.ylabel('Sphericity(range: 0-1)')
+	plt.plot(volume,sphericity,'k*', markersize=20,label='Unknown Case')
+	plt.annotate('Unknown Case: Features --> Volume '+str(1000*volume)+ ' Sphericity '+str(sphericity), xy=(volume+0.05,sphericity+0.05), xytext=(volume+0.3,sphericity+0.3),
+            arrowprops=dict(facecolor='black', shrink=0.03),color='black', fontsize=9)
 	plt.xlim(xx.min(), xx.max())
 	plt.ylim(yy.min(), yy.max())
 	plt.xticks(())
 	plt.yticks(())
+	plt.legend()
 	noduletype=clf.predict([volume,sphericity])
 	if noduletype==0.:
 		plt.title('The classification for this case is benign')
 	else:
-		plt.title('The classification for this case is benign')
+		plt.title('The classification for this case is malignant')
 	f.savefig('output.pdf')
 
 	return output
@@ -90,7 +101,7 @@ def main(argv):
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser( description='Apply a trained model')
 	parser.add_argument ("-i", "--dataset",  help="unknowdata these data have to be in the format that standford feature calculator outputs" , required=True)
-	parser.add_argument ("-o", "--output",  help="output name of zip file" , required=True)
+	parser.add_argument ("-o", "--output",  help="output name of zip file" , required=False)
 	parser.add_argument('--version', action='version', version='%(prog)s 0.1')
 	parser.add_argument("-q", "--quiet",
 						  action="store_false", dest="verbose",

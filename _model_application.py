@@ -58,13 +58,13 @@ def machinelearningpipeline(dataset,output='output.pdf'):
 						 np.arange(y_min, y_max, h))
 	# title for the plots
 	titles = ['SVC with linear kernel']
-	f=plt.figure( figsize=(8, 6), dpi=80, facecolor='w', edgecolor='k')
+	f=plt.figure( figsize=(16, 12), dpi=300, facecolor='w', edgecolor='k')
 	clf=svc
 	Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
 	# Put the result into a color plot
 	Z = Z.reshape(xx.shape)
 	# Plot also the training points
-	plt.contourf(xx, yy, Z, cmap=plt.cm.bwr_r, alpha=0.8)
+	plt.contourf(xx, yy, Z, cmap=plt.cm.bwr, alpha=0.8)
 	# Plot also the training points
 	classes = ['Benign','Malignant']
 	colours = ['b','r']

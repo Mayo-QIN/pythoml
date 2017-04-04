@@ -43,9 +43,9 @@ def machinelearningpipeline(dataset,output='output.pdf'):
 	volume=float(volume)/1000
 	sphericity=float(data['sphericity.value'].values[0])
 	print sphericity
-	class1=np.random.random((20, 2))
-	class1[:,0]=0.7*class1[:,0]
-	class2=np.random.random((20, 2))
+	class1=np.random.random((40, 2))
+	class1[:,0]=5*class1[:,0]
+	class2=np.random.random((40, 2))
 	class2[:,0]=class2[:,0]
 	X=np.append(class1,class2,axis=0)
 	y=np.append(np.zeros((len(class1))),np.ones((len(class2))),axis=0)
